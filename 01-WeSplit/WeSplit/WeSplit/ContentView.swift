@@ -27,6 +27,10 @@ struct ContentView: View {
         return amountPerPerson
     }
     
+    var totalPlusTip: Double {
+        checkAmount + (checkAmount * Double(tipPercentage) / 100)
+    }
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -43,16 +47,31 @@ struct ContentView: View {
                 }
                 
                 Section("How much tip do you want to leave?") {
+                    // Challenge 3: Change the tip percentage picker to show a new screen rather than using a segmented control, and give it a wider range of options – everything from 0% to 100%. Tip: use the range 0..<101 for your range rather than a fixed array.
                     Picker("Tip percentage", selection: $tipPercentage) {
-                        ForEach(tipPercentages, id: \.self) {
+                        ForEach(0..<101) {
                             Text($0, format: .percent)
                         }
                     }
-                    .pickerStyle(.segmented)
+                    .pickerStyle(.navigationLink)
+                    
+//                    Picker("Tip percentage", selection: $tipPercentage) {
+//                        ForEach(tipPercentages, id: \.self) {
+//                            Text($0, format: .percent)
+//                        }
+//                    }
+                    // .pickerStyle(.segmented)
+                    
                 }
                 
-                Section {
+                // Challenge 1: Add a header to the third section, saying “Amount per person”
+                Section("Amount per person") {
                     Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                }
+                
+                // Challenge 2: Add another section showing the total amount for the check – i.e., the original amount plus tip value, without dividing by the number of people.
+                Section("Total plus Tip") {
+                    Text(totalPlusTip, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                 }
             }
             .navigationTitle("WeSplit")
