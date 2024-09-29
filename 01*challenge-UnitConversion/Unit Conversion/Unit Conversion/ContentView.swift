@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     @State var inputValue: Double = 35.0
     @State var inputUnit: String = "milliliters"
-    @State var outputUnit: String = "pints"
+    @State var outputUnit: String = "gallons"
     
     var outputValue: Double {
         if inputUnit == "milliliters" {
@@ -20,6 +20,8 @@ struct ContentView: View {
                 return inputValue / 236.588
             } else if outputUnit == "pints" {
                 return inputValue / 473.176
+            } else if outputUnit == "gallons" {
+                return inputValue / 3785.41
             }
         }
         return 0
