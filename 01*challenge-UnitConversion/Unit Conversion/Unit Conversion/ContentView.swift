@@ -13,13 +13,13 @@ struct ContentView: View {
     @State var outputUnit: String = "gallons"
     
     var outputValue: Double {
+        guard inputUnit != outputUnit else { return inputValue }
+        
         if inputUnit == "milliliters" {
             return convertFrom(milliliters: inputValue, to: outputUnit)
         } else if inputUnit == "liters" {
             if outputUnit == "milliliters" {
                 return inputValue * 1000
-            } else if outputUnit == "liters" {
-                return inputValue
             } else { // cups, pints, gallons
                 let milliliters = inputValue * 1000
                 return convertFrom(milliliters: milliliters, to: outputUnit)
