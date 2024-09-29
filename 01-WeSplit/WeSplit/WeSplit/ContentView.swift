@@ -17,7 +17,7 @@ struct ContentView: View {
     let tipPercentages = [10, 15, 20, 25, 0]
     
     var totalPerPerson: Double {
-        let peopleCount = Double(numberOfPeople + 2)
+        let peopleCount = Double(numberOfPeople) // look Ma! no + 2!
         let tipSelection = Double(tipPercentage)
         
         let tipValue = checkAmount * tipSelection / 100
@@ -40,7 +40,7 @@ struct ContentView: View {
                         .focused($amountIsFocused)
                     Picker("Number of people", selection: $numberOfPeople) {
                         ForEach(2..<100) {
-                            Text("\($0) people")
+                            Text("\($0) people").tag($0) // this will tell the Picker to use the tag's value instead of the element's INDEX number in the range of 2..<100
                         }
                     }
                     .pickerStyle(.navigationLink)
