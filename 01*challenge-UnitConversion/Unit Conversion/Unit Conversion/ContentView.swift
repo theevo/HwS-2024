@@ -22,6 +22,8 @@ struct ContentView: View {
                 return inputValue / 473.176
             } else if outputUnit == "gallons" {
                 return inputValue / 3785.41
+            } else if outputUnit == "milliliters" {
+                return inputValue
             }
         }
         return 0
