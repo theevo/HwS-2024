@@ -8,14 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var inputValue: Double = 0.0
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            Form {
+                Section("Input Value") {
+                    TextField("Input Value", value: $inputValue, format: .number)
+                }
+            }
+            .navigationTitle("Volume Conversion")
         }
-        .padding()
     }
 }
 
