@@ -14,17 +14,7 @@ struct ContentView: View {
     
     var outputValue: Double {
         if inputUnit == "milliliters" {
-            if outputUnit == "liters" {
-                return inputValue / 1000
-            } else if outputUnit == "cups" {
-                return inputValue / 236.588
-            } else if outputUnit == "pints" {
-                return inputValue / 473.176
-            } else if outputUnit == "gallons" {
-                return inputValue / 3785.41
-            } else if outputUnit == "milliliters" {
-                return inputValue
-            }
+            return convertFrom(milliliters: inputValue, to: outputUnit)
         } else if inputUnit == "liters" {
             if outputUnit == "milliliters" {
                 return inputValue * 1000
@@ -40,6 +30,22 @@ struct ContentView: View {
         "pints",
         "gallons"
     ]
+    
+    /// Milliliters will serve as a base unit. this function will do the work of converting FROM milliliters TO other units
+    func convertFrom(milliliters: Double, to unit: String) -> Double {
+        if unit == "milliliters" {
+            return milliliters
+        } else if unit == "liters" {
+            return milliliters  / 1000
+        } else if unit == "cups" {
+            return milliliters / 236.588
+        } else if unit == "pints" {
+            return milliliters / 473.176
+        } else if unit == "gallons" {
+            return milliliters / 3785.41
+        }
+        return 0
+    }
 
     var body: some View {
         NavigationStack {
