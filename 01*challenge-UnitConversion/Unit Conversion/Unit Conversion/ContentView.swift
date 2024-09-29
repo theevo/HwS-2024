@@ -25,6 +25,10 @@ struct ContentView: View {
             } else if outputUnit == "milliliters" {
                 return inputValue
             }
+        } else if inputUnit == "liters" {
+            if outputUnit == "milliliters" {
+                return inputValue * 1000
+            }
         }
         return 0
     }
