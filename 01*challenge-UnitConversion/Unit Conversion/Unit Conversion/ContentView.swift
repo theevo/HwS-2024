@@ -26,6 +26,9 @@ struct ContentView: View {
             } else if outputUnit == "pints" {
                 let milliliters = inputValue * 1000
                 return convertFrom(milliliters: milliliters, to: outputUnit)
+            } else if outputUnit == "gallons" {
+                let milliliters = inputValue * 1000
+                return convertFrom(milliliters: milliliters, to: outputUnit)
             }
         }
         return 0
