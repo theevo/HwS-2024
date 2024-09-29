@@ -18,6 +18,11 @@ struct ContentView: View {
         } else if inputUnit == "liters" {
             if outputUnit == "milliliters" {
                 return inputValue * 1000
+            } else if outputUnit == "liters" {
+                return inputValue
+            } else if outputUnit == "cups" {
+                let milliliters = inputValue * 1000
+                return convertFrom(milliliters: milliliters, to: outputUnit)
             }
         }
         return 0
