@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var inputValue: Double = 0.0
+    @State var inputValue: Double = 35.0
     @State var inputUnit: String = "milliliters"
-    @State var outputUnit: String = "gallons"
+    @State var outputUnit: String = "liters"
     
-    var outputValue: Double = 500
+    var outputValue: Double {
+        if inputUnit == "milliliters" {
+            if outputUnit == "liters" {
+                return inputValue / 1000
+            }
+        }
+        return 0
+    }
     
     var volumeUnits = [
         "milliliters",
